@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'player.apps.PlayerConfig',
     'rest_framework',
+    'frontend',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
