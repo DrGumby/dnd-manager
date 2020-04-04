@@ -14,7 +14,6 @@ def api_root(request, format=None):
         'items': reverse('item-list', request=request, format=format)
     })
 
-
 class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
