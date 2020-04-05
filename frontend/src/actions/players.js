@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_PLAYERS, DELETE_PLAYER, ADD_PLAYER, GET_SINGLE_PLAYER } from './types';
+import { GET_PLAYERS, DELETE_PLAYER, ADD_PLAYER, GET_SINGLE_PLAYER, ADD_ITEM } from './types';
 
 
 // GET PLAYERS
@@ -49,3 +49,14 @@ export const deletePlayer = id => dispatch => {
       })
       .catch(err => console.log(err));
   };
+
+  export const addItem = item => dispatch => {
+    axios.post("/items/", item)
+        .then(res => {
+            dispatch({
+                type: ADD_ITEM,
+                payload: res.data
+            });
+        })
+        .catch(err => console.log(err));
+};

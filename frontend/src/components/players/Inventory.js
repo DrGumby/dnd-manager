@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Alert, Card, Table, Collapse } from 'react-bootstrap';
-
+import AddItem from '../items/AddItem';
 export class Inventory extends Component {
 
     static propTypes = {
@@ -34,6 +34,7 @@ export class Inventory extends Component {
                                 )}
                             </tbody>
                         </Table>
+                        <AddItem />
                     </Card.Body>
                 </Card>
             );

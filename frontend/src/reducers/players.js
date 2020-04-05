@@ -1,4 +1,4 @@
-import { GET_PLAYERS, DELETE_PLAYER, ADD_PLAYER, GET_SINGLE_PLAYER } from "../actions/types.js";
+import { GET_PLAYERS, DELETE_PLAYER, ADD_PLAYER, GET_SINGLE_PLAYER, ADD_ITEM } from "../actions/types.js";
 
 const initialState = {
   players: [],
@@ -26,6 +26,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         selectedPlayer: action.payload
+      };
+    case ADD_ITEM:
+      return {
+        ...state,
+        selectedPlayer: {
+          ...state.selectedPlayer,
+          items: [...state.selectedPlayer.items, action.payload]
+        }
       };
     default:
       return state;
