@@ -7,8 +7,6 @@ import Inventory from "./Inventory";
 export default function Dashboard() {
   return (
     <Fragment>
-        <PlayerDetail />
-        <Inventory />
         <PlayerForm />
         <Players />
     </Fragment>

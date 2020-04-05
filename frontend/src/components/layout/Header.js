@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { Nav, Navbar, Link } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 export class Header extends Component {
     render() {
@@ -8,8 +9,8 @@ export class Header extends Component {
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand>D&amp;D Manager</Navbar.Brand>
                 <Nav className="mr-auto">
-                <Nav.Link>Game</Nav.Link>
-                <Nav.Link>Players</Nav.Link>
+                <Nav.Link as={NavLink} to="/game">Game</Nav.Link>
+                <Nav.Link as={NavLink} to="/players">Players</Nav.Link>
                 </Nav>
             </Navbar>
         )
