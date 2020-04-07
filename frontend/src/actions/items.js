@@ -14,15 +14,3 @@ export const getItems = () => (dispatch) => {
         .catch((err) => console.log(err));
 };
 
-// DELETE ITEM
-export const deleteItem = (id) => (dispatch) => {
-    axios
-        .delete(`/items/${id}/`)
-        .then((res) => {
-            dispatch({
-                type: DELETE_ITEM,
-                payload: id,
-            });
-        })
-        .catch((err) => console.log(err));
-};
