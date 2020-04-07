@@ -1,21 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Alert, Card, Table } from 'react-bootstrap';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { Alert, Card, Table } from "react-bootstrap";
 
 export class PlayerDetail extends Component {
-
     static propTypes = {
         selectedPlayer: PropTypes.object,
     };
 
     render() {
         if (!this.props.selectedPlayer) {
-            return (
-                <Alert variant="info">
-                    No player selected
-                </Alert>
-            );
+            return <Alert variant="info">No player selected</Alert>;
         } else {
             const player = this.props.selectedPlayer;
             return (
@@ -46,8 +41,8 @@ export class PlayerDetail extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    selectedPlayer: state.players.selectedPlayer
+const mapStateToProps = (state) => ({
+    selectedPlayer: state.players.selectedPlayer,
 });
 
 export default connect(mapStateToProps)(PlayerDetail);

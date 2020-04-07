@@ -1,27 +1,24 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { addItem } from '../../actions/players';
-import { Form, Button } from 'react-bootstrap';
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { addItem } from "../../actions/players";
+import { Form, Button } from "react-bootstrap";
 
 export class ItemForm extends Component {
-
     state = {
         name: "",
         description: "",
         count: 0,
-    } 
-
+    };
 
     static propTypes = {
         addItem: PropTypes.func.isRequired,
-        selectedPlayer: PropTypes.object.isRequired
-    }
+        selectedPlayer: PropTypes.object.isRequired,
+    };
 
-    onChange = e => this.setState({ [e.target.name]: e.target.value })
+    onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-    onSubmit = e => {
+    onSubmit = (e) => {
         e.preventDefault();
         const { name, description, count } = this.state;
         const player = this.props.selectedPlayer.id;
@@ -30,7 +27,7 @@ export class ItemForm extends Component {
         this.setState({
             name: "",
             description: "",
-            count: 0
+            count: 0,
         });
     };
 
@@ -50,42 +47,37 @@ export class ItemForm extends Component {
                         />
                     </Form.Group>
 
-                <Form.Group>
-                    <Form.Control
-                        type="textarea"
-                        placeholder="Enter description"
-                        name="description"
-                        onChange={this.onChange}
-                        value={description}
-                    />
-                </Form.Group>
+                    <Form.Group>
+                        <Form.Control
+                            type="textarea"
+                            placeholder="Enter description"
+                            name="description"
+                            onChange={this.onChange}
+                            value={description}
+                        />
+                    </Form.Group>
 
-                <Form.Group>
-                    <Form.Control
-                        type="number"
-                        placeholder="Enter item count"
-                        name="count"
-                        onChange={this.onChange}
-                        value={count}
-                    />
-                </Form.Group>
+                    <Form.Group>
+                        <Form.Control
+                            type="number"
+                            placeholder="Enter item count"
+                            name="count"
+                            onChange={this.onChange}
+                            value={count}
+                        />
+                    </Form.Group>
 
-                <Button
-                    variant="primary"
-                    type="submit"
-                >
-                    Submit
-                </Button>
-
-
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
                 </Form>
             </>
-        )
+        );
     }
 }
 
-const mapStateToProps = state => ({
-    selectedPlayer: state.players.selectedPlayer
+const mapStateToProps = (state) => ({
+    selectedPlayer: state.players.selectedPlayer,
 });
 
-export default connect(mapStateToProps, { addItem })(ItemForm)
+export default connect(mapStateToProps, { addItem })(ItemForm);

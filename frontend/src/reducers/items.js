@@ -1,20 +1,15 @@
-import { GET_ITEMS, DELETE_ITEM, ADD_ITEM } from "../actions/types";
+import { GET_ITEMS } from "../actions/types";
 
 const initialState = {
-    items: []
+    items: [],
 };
 
-export default function(state = initialState, action) {
-    switch(action.type) {
+export default function (state = initialState, action) {
+    switch (action.type) {
         case GET_ITEMS:
             return {
                 ...state,
-                items: action.payload
-            };
-        case DELETE_ITEM:
-            return {
-                ...state,
-                items: state.items.filter(item => item.id !== action.payload)
+                items: action.payload,
             };
         default:
             return state;

@@ -1,13 +1,17 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Alert, Card, Table, Collapse } from 'react-bootstrap';
-import AddItem from '../items/AddItem';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { Alert, Card, Table, Collapse, Button } from "react-bootstrap";
+import AddItem from "../items/AddItem";
+import { deleteItem } from "../../actions/items";
 export class Inventory extends Component {
-
     static propTypes = {
-        selectedPlayer: PropTypes.object
+        selectedPlayer: PropTypes.object,
+        deleteItem: PropTypes.func.isRequired,
     };
+
+
+
 
     render() {
         if (!this.props.selectedPlayer) {
@@ -24,14 +28,15 @@ export class Inventory extends Component {
                     <Card.Body>
                         <Table responsive hover striped>
                             <tbody>
-                                {items.map((item) =>
+                                {items.map((item) => (
                                     <TRow
                                         key={item.id}
                                         name={item.name}
                                         count={item.count}
                                         description={item.description}
+                                        onDeleteItem={this.props.deleteItem.bind(this, item.id)}
                                     />
-                                )}
+                                ))}
                             </tbody>
                         </Table>
                         <AddItem />
@@ -40,38 +45,34 @@ export class Inventory extends Component {
             );
         }
     }
-
 }
 
-const mapStateToProps = state => ({
-    selectedPlayer: state.players.selectedPlayer
+const mapStateToProps = (state) => ({
+    selectedPlayer: state.players.selectedPlayer,
 });
 
 function TRow(props) {
     const [open, setOpen] = React.useState(false);
     return (
         <>
-        <tr 
-            onClick={() => setOpen(!open)}
-            aria-controls="collapse-row"
-            aria-expanded={open}
-        >
-            <td>
-                {props.name}
-            </td>
-            <td>
-                {props.count}
-            </td>
-        </tr>
-        <Collapse in={open}>
-            <tr id="collapse-row">
-                <td colSpan="2">
-                    {props.description}
+            <tr
+                onClick={() => setOpen(!open)}
+                aria-controls="collapse-row"
+                aria-expanded={open}
+            >
+                <td>{props.name}</td>
+                <td>{props.count}</td>
+                <td>
+                    <Button variant="warning" onClick={props.onDeleteItem}>Delete</Button>
                 </td>
             </tr>
-        </Collapse>
+            <Collapse in={open}>
+                <tr id="collapse-row">
+                    <td colSpan="2">{props.description}</td>
+                </tr>
+            </Collapse>
         </>
-    )
+    );
 }
 
-export default connect(mapStateToProps)(Inventory);
+export default connect(mapStateToProps, {deleteItem})(Inventory);

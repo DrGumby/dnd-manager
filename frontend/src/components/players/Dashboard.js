@@ -5,10 +5,10 @@ import PlayerDetail from "./PlayerDetail";
 import Inventory from "./Inventory";
 
 export default function Dashboard() {
-  return (
-    <Fragment>
-        <PlayerForm />
-        <Players />
-    </Fragment>
-  );
+    return (
+        <Fragment>
+            <PlayerForm />
+            <Players />
+        </Fragment>
+    );
 }

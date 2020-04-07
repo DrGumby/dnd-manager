@@ -1,25 +1,24 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addPlayer } from "../../actions/players";
-import { Card, Button , Form } from 'react-bootstrap';
+import { Card, Button, Form } from "react-bootstrap";
 
 export class PlayerForm extends Component {
-
     state = {
         name: "",
         hp: 0,
         exp: 0,
-        money: 0
+        money: 0,
     };
 
     static propTypes = {
-        addPlayer: PropTypes.func.isRequired
-    }
+        addPlayer: PropTypes.func.isRequired,
+    };
 
-    onChange = e => this.setState({ [e.target.name]: e.target.value });
+    onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-    onSubmit = e => {
+    onSubmit = (e) => {
         e.preventDefault();
         const { name, hp, exp, money } = this.state;
         const player = { name, hp, exp, money };
@@ -28,7 +27,7 @@ export class PlayerForm extends Component {
             name: "",
             hp: 0,
             exp: 0,
-            money: 0
+            money: 0,
         });
     };
 
@@ -53,7 +52,7 @@ export class PlayerForm extends Component {
 
                             <Form.Group>
                                 <Form.Label>HP</Form.Label>
-                                <Form.Control 
+                                <Form.Control
                                     type="number"
                                     placeholder="Enter HP"
                                     name="hp"
@@ -68,7 +67,7 @@ export class PlayerForm extends Component {
                                     placeholder="Enter experience"
                                     name="exp"
                                     onChange={this.onChange}
-                                    value={exp}    
+                                    value={exp}
                                 />
                             </Form.Group>
                             <Form.Group>
@@ -80,14 +79,16 @@ export class PlayerForm extends Component {
                                     onChange={this.onChange}
                                     value={money}
                                 />
-                            </Form.Group>                            
+                            </Form.Group>
 
-                            <Button variant="primary" type="submit">Submit</Button>
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
                         </Form>
                     </Card.Body>
                 </Card>
             </>
-        )
+        );
     }
 }
 
