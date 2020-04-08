@@ -2,25 +2,19 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { updatePlayer } from "../../actions/players";
-import {
-    Alert,
-    Card,
-    Table,
-    Button,
-    InputGroup,
-    FormControl,
-} from "react-bootstrap";
+import { Alert, Card, Table } from "react-bootstrap";
+import AddSubField from "../util/AddSubField";
 
 export class PlayerDetail extends Component {
     state = {
-        addHp: 0,
-        subHp: 0,
-        addExp: 0,
-        subExp: 0,
-        addMoney: 0,
-        subMoney: 0,
-        addAmmo: 0,
-        subAmmo: 0,
+        addHp: 1,
+        subHp: 1,
+        addExp: 1,
+        subExp: 1,
+        addMoney: 1,
+        subMoney: 1,
+        addAmmo: 1,
+        subAmmo: 1,
     };
 
     static propTypes = {
@@ -64,14 +58,14 @@ export class PlayerDetail extends Component {
         }
         this.props.updatePlayer(player);
         this.setState({
-            addHp: 0,
-            subHp: 0,
-            addExp: 0,
-            subExp: 0,
-            addMoney: 0,
-            subMoney: 0,
-            addAmmo: 0,
-            subAmmo: 0,
+            addHp: 1,
+            subHp: 1,
+            addExp: 1,
+            subExp: 1,
+            addMoney: 1,
+            subMoney: 1,
+            addAmmo: 1,
+            subAmmo: 1,
         });
     };
 
@@ -161,58 +155,5 @@ export class PlayerDetail extends Component {
 const mapStateToProps = (state) => ({
     selectedPlayer: state.players.selectedPlayer,
 });
-
-/**
- *
- * @param {*} props Properties
- *
- * onSubmit Function callback to be called on button click
- * onChange Function callback to be called on field change
- * value Value to add or subtract
- * sub Value of left (subract) field
- * add Value of right (add) field
- * player Value to show in the centre field
- */
-function AddSubField(props) {
-    return (
-        <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-                <Button
-                    variant="outline-secondary"
-                    onClick={props.onSubmit}
-                    name={"onSub" + props.value}
-                >
-                    -
-                </Button>
-            </InputGroup.Prepend>
-            <FormControl
-                aria-describedby="basic-addon1"
-                type="number"
-                min="1"
-                name={"sub" + props.value}
-                onChange={props.onChange}
-                value={props.sub}
-            />
-            <FormControl readOnly disabled placeholder={props.player} />
-            <FormControl
-                aria-describedby="basic-addon1"
-                type="number"
-                min="1"
-                name={"add" + props.value}
-                onChange={props.onChange}
-                value={props.add}
-            />
-            <InputGroup.Append>
-                <Button
-                    variant="outline-secondary"
-                    onClick={props.onSubmit}
-                    name={"onAdd" + props.value}
-                >
-                    +
-                </Button>
-            </InputGroup.Append>
-        </InputGroup>
-    );
-}
 
 export default connect(mapStateToProps, { updatePlayer })(PlayerDetail);

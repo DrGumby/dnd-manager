@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Alert, Card, Table, Collapse, Button } from "react-bootstrap";
 import AddItem from "../items/AddItem";
 import { deleteItem } from "../../actions/players";
+import TRow from "../util/TRow";
 export class Inventory extends Component {
     static propTypes = {
         selectedPlayer: PropTypes.object,
@@ -29,9 +30,7 @@ export class Inventory extends Component {
                                 {items.map((item) => (
                                     <TRow
                                         key={item.id}
-                                        name={item.name}
-                                        count={item.count}
-                                        description={item.description}
+                                        item={item}
                                         onDeleteItem={this.props.deleteItem.bind(
                                             this,
                                             item.id
@@ -50,31 +49,5 @@ export class Inventory extends Component {
 const mapStateToProps = (state) => ({
     selectedPlayer: state.players.selectedPlayer,
 });
-
-function TRow(props) {
-    const [open, setOpen] = React.useState(false);
-    return (
-        <>
-            <tr
-                onClick={() => setOpen(!open)}
-                aria-controls="collapse-row"
-                aria-expanded={open}
-            >
-                <td>{props.name}</td>
-                <td>{props.count}</td>
-                <td>
-                    <Button variant="warning" onClick={props.onDeleteItem}>
-                        Delete
-                    </Button>
-                </td>
-            </tr>
-            <Collapse in={open}>
-                <tr id="collapse-row">
-                    <td colSpan="2">{props.description}</td>
-                </tr>
-            </Collapse>
-        </>
-    );
-}
 
 export default connect(mapStateToProps, { deleteItem })(Inventory);
