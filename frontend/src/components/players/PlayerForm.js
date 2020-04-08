@@ -10,6 +10,7 @@ export class PlayerForm extends Component {
         hp: 0,
         exp: 0,
         money: 0,
+        ammo: 0,
     };
 
     static propTypes = {
@@ -20,19 +21,20 @@ export class PlayerForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const { name, hp, exp, money } = this.state;
-        const player = { name, hp, exp, money };
+        const { name, hp, exp, money, ammo } = this.state;
+        const player = { name, hp, exp, money, ammo };
         this.props.addPlayer(player);
         this.setState({
             name: "",
             hp: 0,
             exp: 0,
             money: 0,
+            ammo: 0,
         });
     };
 
     render() {
-        const { name, hp, exp, money } = this.state;
+        const { name, hp, exp, money, ammo } = this.state;
         return (
             <>
                 <Card>
@@ -78,6 +80,16 @@ export class PlayerForm extends Component {
                                     name="money"
                                     onChange={this.onChange}
                                     value={money}
+                                />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Ammo</Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    placeholder="Enter ammo"
+                                    name="ammo"
+                                    onChange={this.onChange}
+                                    value={ammo}
                                 />
                             </Form.Group>
 

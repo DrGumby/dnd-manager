@@ -4,9 +4,10 @@ import {
     GET_PLAYERS,
     DELETE_PLAYER,
     ADD_PLAYER,
+    UPDATE_PLAYER,
     GET_SINGLE_PLAYER,
     ADD_ITEM,
-    DELETE_ITEM
+    DELETE_ITEM,
 } from "./types";
 
 // GET PLAYERS
@@ -50,6 +51,19 @@ export const addPlayer = (player) => (dispatch) => {
         .then((res) => {
             dispatch({
                 type: ADD_PLAYER,
+                payload: res.data,
+            });
+        })
+        .catch((err) => console.log(err));
+};
+
+// UPDATE PLAYER
+export const updatePlayer = (player) => (dispatch) => {
+    axios
+        .put(`/players/${player.id}/`, player)
+        .then((res) => {
+            dispatch({
+                type: UPDATE_PLAYER,
                 payload: res.data,
             });
         })

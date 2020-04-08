@@ -3,15 +3,12 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Alert, Card, Table, Collapse, Button } from "react-bootstrap";
 import AddItem from "../items/AddItem";
-import { deleteItem } from "../../actions/items";
+import { deleteItem } from "../../actions/players";
 export class Inventory extends Component {
     static propTypes = {
         selectedPlayer: PropTypes.object,
         deleteItem: PropTypes.func.isRequired,
     };
-
-
-
 
     render() {
         if (!this.props.selectedPlayer) {
@@ -26,6 +23,7 @@ export class Inventory extends Component {
                 <Card>
                     <Card.Header>Inventory</Card.Header>
                     <Card.Body>
+                        <AddItem />
                         <Table responsive hover striped>
                             <tbody>
                                 {items.map((item) => (
@@ -34,12 +32,14 @@ export class Inventory extends Component {
                                         name={item.name}
                                         count={item.count}
                                         description={item.description}
-                                        onDeleteItem={this.props.deleteItem.bind(this, item.id)}
+                                        onDeleteItem={this.props.deleteItem.bind(
+                                            this,
+                                            item.id
+                                        )}
                                     />
                                 ))}
                             </tbody>
                         </Table>
-                        <AddItem />
                     </Card.Body>
                 </Card>
             );
@@ -63,7 +63,9 @@ function TRow(props) {
                 <td>{props.name}</td>
                 <td>{props.count}</td>
                 <td>
-                    <Button variant="warning" onClick={props.onDeleteItem}>Delete</Button>
+                    <Button variant="warning" onClick={props.onDeleteItem}>
+                        Delete
+                    </Button>
                 </td>
             </tr>
             <Collapse in={open}>
@@ -75,4 +77,4 @@ function TRow(props) {
     );
 }
 
-export default connect(mapStateToProps, {deleteItem})(Inventory);
+export default connect(mapStateToProps, { deleteItem })(Inventory);

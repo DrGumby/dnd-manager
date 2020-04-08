@@ -2,9 +2,10 @@ import {
     GET_PLAYERS,
     DELETE_PLAYER,
     ADD_PLAYER,
+    UPDATE_PLAYER,
     GET_SINGLE_PLAYER,
     ADD_ITEM,
-    DELETE_ITEM
+    DELETE_ITEM,
 } from "../actions/types.js";
 
 const initialState = {
@@ -36,6 +37,11 @@ export default function (state = initialState, action) {
                 ...state,
                 selectedPlayer: action.payload,
             };
+        case UPDATE_PLAYER:
+            return {
+                ...state,
+                selectedPlayer: action.payload,
+            };
         case ADD_ITEM:
             return {
                 ...state,
@@ -49,7 +55,9 @@ export default function (state = initialState, action) {
                 ...state,
                 selectedPlayer: {
                     ...state.selectedPlayer,
-                    items: state.selectedPlayer.items.filter((item) => item.id !== action.payload),
+                    items: state.selectedPlayer.items.filter(
+                        (item) => item.id !== action.payload
+                    ),
                 },
             };
         default:

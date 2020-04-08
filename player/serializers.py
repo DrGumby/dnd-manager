@@ -12,5 +12,5 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     items = ItemSerializer(many=True, read_only=True)
     class Meta:
         model = Player
-        fields = ('id', 'name', 'hp', 'exp', 'money', 'items')
+        fields = ('id', 'name', 'hp', 'exp', 'money', 'ammo', 'items')
 
